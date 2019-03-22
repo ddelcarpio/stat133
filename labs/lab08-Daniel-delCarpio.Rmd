@@ -1,0 +1,138 @@
+---
+title: "lab08-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "March 21, 2019"
+output: html_document
+---
+
+```{r}
+#Summation Series
+n <- 10
+series <- vector("double",n+1)
+
+for(k in 0:n){
+  term <- 1 / (2^k)
+  series[k+1] <- term
+  print(term)
+}
+
+sum(series)
+
+for(k in 0:n){
+  term <- 1 / (9^k)
+  series[k+1] <- term
+  print(term)
+}
+
+sum(series)
+
+#Arithmetic Series
+a1 = 3
+d = 3
+for (k in 1:n){
+  a_n <- a1 +(n - 1)*d
+  series[k+1] <- a_n
+}
+
+sum(series)
+
+#Geometric Sequence
+for (k in 1:n){
+  r <- a1 / n
+  a_n <- a1 * r^(n-1)
+  series[k+1] <- a_n
+}
+
+sum(series)
+
+#Sine Approximation
+#Average
+x <- 1:100
+sum_entries <- 0
+n <- length(x)
+
+for (i in 1:n){
+  sum_entries <- sum_entries + x[i]
+}
+
+avg <- sum_entries/n
+avg
+
+while (i <= n){
+  sum_entries <- sum_entries + x[i]
+  i <- i+1
+  
+}
+sum_entries
+
+repeat{
+  sum_entries <- sum_entries + x[i]
+  i <- i+1
+  if (i>n) break 
+}
+sum_entries
+
+#Standard Deviation
+
+for (i in 1:n){
+  sd <- (x[i] - x)^2
+}
+
+1/(n-1)*sd
+
+while (i <= n){
+  sd <- (x[i] - x)^2
+  i <- i+1
+}
+
+1/(n-1)*sd
+
+repeat{
+  sd <- (x[i] - x)^2
+  i <- i+1
+  if (i > n) break
+}
+1/(n-1)*sd
+
+#Geomtric Mean
+x <- 1:50
+n <- length(x)
+for (i in 1:n){
+  xbar <- prod(x[i])^(1/n)
+  print(xbar)
+}
+
+while (i <=n){
+  xbar <- prod(x[i])^(1/n)
+  i <- i+1
+  print(xbar)
+}
+
+repeat{
+  xbar <- prod(x[i])^(1/n)
+  i <- i+1
+  print(xbar)
+  if (i > n) break
+}
+#Distance Matrix of Letters
+
+num_letters <- length(LETTERS)
+set.seed(123)
+values <- sample.int(num_letters) 
+distances <- values %*% t(values)
+diag(distances) <- 0
+dimnames(distances) <- list(LETTERS, LETTERS)
+
+
+get_dist <- function(distances=distances,ltrs){
+  distances
+}
+
+vec <- c('E',"D",'A')
+
+cal <- c('C', 'A', 'L')
+stats <- c('S', 'T', 'A', 'T', 'S')
+oski <- c('O', 'S', 'K', 'I')
+zzz <- rep('Z', 3)
+
+```

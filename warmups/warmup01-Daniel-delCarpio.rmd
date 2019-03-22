@@ -1,0 +1,96 @@
+---
+title: "warmup01-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "January 29, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. ~~Star Trek~~ Star Wars
+
+### GALEN 'STARKILLER' MAREK
+
+![](C:\Users\danie\Desktop\memes\starkiller.png)
+
+> "We meet at last, Son of Vader." - Galen Marek
+
+| Description | Value |
+|------------:|:------|
+| Species     | **Human** |
+| Gender      | **Male**  |
+| Height      | **1.85m** |
+| Hair color  | **Brown** |
+| Eye Color   | **Brown** |
+| Skin Color  | **Fair**  |
+
+Want to learn more about the Jedi turned Sith? Read it here <https://starwars.fandom.com/wiki/Galen_Marek>
+
+
+## 2. *Cooking Recipe*
+
+Today we will be making a classic peruvian dessert, Arroz con Leche!
+
+This is perfect for the cold months, especially for a big family feast for Christmas! Make this recipe for all your loved ones. 
+
+Original Recipe at <https://smittenkitchen.com/2010/02/arroz-con-leche-rice-pudding/>
+
+#### Ingredients 
+* 1 cup long-grain white rice
+* 2 cinnamon sticks (I had very large canela sticks - see bottom for more info - so I only used one)
+* 2 strips of lemon or orange zest (can use a peeler to get a larger piece)
+* 3 whole cloves or a tiny pinch of ground cloves
+* 4 cups water
+* 1 egg
+* 3 cups whole milk (updated to note that many people, including my mother, successfully made this with lower fat milks)
+* 1 (12-ounce) can sweetened condensed milk (I realized after the fact that my can had been 14 ounces, had no averse effect)
+* 1/4 teaspoon salt
+* 1 tablespoon vanilla
+* 1/2 cup raisins (optional)
+
+#### Kitchen Tools
+
+* Heavy Saucepan
+* Refrigerator
+* Whisk
+* Bowl
+* Small serving cups
+
+#### Recipe 
+1. Soak the rice, cinnamon sticks, lemon or orange zest and whole or powdered cloves in the water in a heavy saucepan for 1 hour.
+
+2. After soaking, bring the rice mixture to a boil on high heat, uncovered. When it starts to boil (about 5 minutes), lower the heat to medium and cook for 10 to 12 more minutes or until water is almost evaporated.
+
+3. While rice is cooking, beat the egg in a bowl. Add the milk and stir well to mix. Add the egg mixture, condensed milk, salt, vanilla extract and raisins, if using, to the rice and cook over medium-low heat, stirring carefully, until it thickens slightly or until desired consistency about 25 to 35 minutes (see notes that follow).
+
+(About cooking time: Many reviewers said 25 to 35 minutes was way too much cooking time for them, and that 15 to 20 minutes would have been better. I was all ready to pull my pot off early, but actually needed almost 30 minutes. Still, want to give you a heads up that yours might be done sooner.)
+
+(About "desired consistency": I cooked mine until all but 10 percent of the liquid had been absorbed, which yielded a creamy, not-too-thick pudding. If you like your arroz con leche thinner, pull it off the stove when more liquid is left. This pudding does most of its thickening as it cools, but the end result should still be thinner than traditional rice pudding.)
+
+4. Remove citrus zest and cinnamon sticks. Let cool uncovered, then chill the rest of the way in the fridge.
+
+#### Heres what your final product should look like. 
+
+
+
+![ Mmmmm Delicious!!](C:\Users\danie\Desktop\memes\arroz con leche.png)
+
+
+
+## 3. **Euclidean Distance**
+
+###Definition 
+
+***
+
+The **Euclidean Distance** between points **p** and **q** is the length of the line segment connection them ($\overline{pq}$).
+
+In Cartesian coordinates if **p** = ($p_{1},p_{2},...,p_{n}$) and **q** = ($q_{1},q_{2},...,q_{n}$) are two points in Euclidean *n*-space, then the distance(d) from **p** to **q**, or from **q** to **p** is given by the Pythagorean formula:
+$$ d(\textbf{p,q})=d(\textbf{q,p})= \sqrt{(q_{1}-p_{1})^{2}+(q_2-p_2)^2+...+(q_n-p_n)^2} $$
+$$ \sqrt{\sum_{i=1}^{\infty}(q_i-p_i)^2.} $$
+The position of a point in the Euclidean *n*-space is a Euclidean vector. So **p** and **q** may be represented as Euclidean vectors, starting from the origin of the space (intial point) with their tips (terminal points) ending at the two points. the Euclidean norm, or **Euclidean length**, or **magnitude** of a vector measures the length of the vector:
+$$ ||\textbf{p}|| = \sqrt{p^2_1 +p^2_2+...+p^2_n}=\sqrt{\textbf{p}\cdot \textbf{p}},$$
+where the last expression involves the dot product. 
+

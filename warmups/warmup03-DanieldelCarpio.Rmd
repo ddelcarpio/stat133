@@ -1,0 +1,149 @@
+---
+title: "warmup03-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "February 14, 2019"
+output: html_document
+---
+
+
+##1)
+
+```{r}
+
+url <- "https://raw.githubusercontent.com/ucb-stat133/stat133-hws/master/data/nba2018-players.csv"
+
+data_types <- c("character","factor","factor","integer","integer","integer","integer","character","double","integer","integer","integer","integer","integer")
+
+nba <- read.csv(url,sep=",",colClasses = data_types)
+
+str(nba,vec.len = 1)
+
+nba2 <- read.table(url,sep=",",header=TRUE,colClasses = data_types)
+
+str(nba2,vec.len = 1)
+
+
+print(identical(nba,nba2))
+
+```
+
+##2)
+
+A. The column names disspear turn into V1, V2, V3...
+
+B. They all turn into factors.
+
+C. In read.table header is default set to FALSE, so it does not read correctly, so we have to manually change the header to TRUE.
+
+D. The dataframe without the column classes is about 10000 bytes smaller than the one with the column classes.
+
+E. Turns the dataframe nba into a matrix. The function turns factors to numbers by using their internal codes. 
+
+
+##3)
+```{r}
+
+summary(nba$salary)
+
+
+hist(nba$salary)
+
+nba$salary2 <- nba$salary / 1000000
+
+hist(nba$salary2)
+
+nba$salary2 <- log(nba$salary2)
+
+hist(nba$salary2)
+
+#Log Transformation does make it a little more symmetrical. The rest of the dsitrubtion is cut off since we are looking closer at most of the bigger values and cutting out the (relatively) very small ones.
+
+
+low <- nba[nba$salary2 < -3,]
+nrow(low)
+
+#There is 8 nba players that have below -3 salary.
+
+low[,c(1,5,4,2,3)]
+
+nba <- nba[-nba$salary2 < -3,]
+#nba
+
+dim(nba)
+
+
+```
+##4)
+
+```{r}
+
+summary(nba$points)
+
+hist(nba$points)
+```
+
+While points does have a skew to the right, it is not as big as the skew on the salary distribution.
+
+```{r}
+
+
+nba$points[nba$points==0] <- 0.1
+
+nba$points <- log(nba$points)
+
+hist(nba$points)
+
+#Most of the points are in the 6.5-8 catergories, while very little in the 5.0-5.5 range
+
+```
+##5)
+
+```{r}
+
+boxplot(salary2 ~ age, data = nba, xlab='Age',ylab='Salary (in millions)')
+
+#When we look at the boxplots by age, the young age groups like 23-24 are among the lowest salaries, while the 27-30 age gets the median salary, past that age the salries go down, with some outliers (big stars like Lebron/KD)
+
+boxplot(points ~ age, data = nba, xlab='Age',ylab='points')
+
+#Points seems to be about the same with some dips, but once a player reaches 32 they start to slump down and do not come back up. 
+
+age2 <- nba$age
+age2[age2 < 19] <- 20
+
+age2 <- cut(age2, breaks=c(20,25,30,max(age2)),labels=c("20-24","25-29","30+"))
+summary(age2)
+
+```
+
+##6)
+```{r}
+palette1<- c("#D4D62A","#4F9D66","#957AB")
+
+
+#levels(age2$colors)<- palette1
+
+#age2$colors
+
+#age_colors
+
+#plot(salary ~ points, data = nba, log = 'xy',main="", xlab = "Points (log scale)", ylab = "Salary (log$)",col = age_colors, pch = 19, cex = 0.6)
+
+#legend("bottomright", fill = palette1, legend - levels(age2),title = "Age Groups", cex = 0.8)
+
+
+```
+
+##7)
+```{r}
+
+boxplot(salary2 ~ position, data = nba, xlab='Position',ylab='Salary (in millions)')
+
+boxplot(points ~ position, data = nba, xlab='Position',ylab='Points')
+
+
+#palette2 <- c("#66c2a5","#fcd8d62","8da0cb","e78ac3","a6d854")
+
+
+
+```

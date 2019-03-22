@@ -1,0 +1,76 @@
+---
+title: "lab04-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "February 21, 2019"
+output: html_document
+---
+
+```{r}
+
+
+library(dplyr)
+library(ggplot2)
+
+dat <- read.csv('https://raw.githubusercontent.com/ucb-stat133/stat133-hws/master/data/nba2018-players.csv',stringsAsFactors = FALSE)
+
+dat <- read.csv('https://raw.githubusercontent.com/ucb-stat133/stat133-hws/master/data/nba2018-players.csv')
+
+
+slice(dat,1:5)
+
+slice(dat,c(seq(10,50,by=5)))
+
+slice(dat,(length(dat)-5):length(dat))
+
+filter(dat,height < 70)
+
+filter(dat,team=='GSW')
+
+filter(dat,team == 'GSW' & position=='C')
+
+select(filter(dat,team=='LAL'),'player')
+
+select(filter(dat,team=='GSW'),c('player','salary'))
+
+select(filter(dat,experience > 10 & salary <10000000),c('player','team','height','weight'))
+
+slice(select(filter(dat,experience ==0 & age==20),c('player','team','height','weight')),1:5)
+
+gsw <- filter(dat,team=='GSW')
+gsw <- select(gsw,player,height,weight)
+gsw <- slice(gsw,c(4,8,10,14,15))
+
+mutate(gsw,product =height*weight)
+
+gsw3 <- mutate(gsw,log_height = log(height),log_weight=log(weight))
+gsw3
+
+arrange(filter(dat,height < 71),height)
+
+slice(select(arrange(dat,salary),c('player','team','salary')),1:5)
+
+slice(select(arrange(dat,points3),c('player','team','points3')),1:10)
+
+gsw_mpg <- select(arrange(mutate( filter(dat,team=='GSW'),min_per_game=minutes/games),desc(min_per_game)),c('player','experience','min_per_game'))
+gsw_mpg
+
+ggplot(data=gsw, aes(x=weight,y=height)) + geom_point()
+
+ggplot(data=gsw, aes(x=weight,y=height)) + geom_point() + geom_text(aes(label=player))
+
+ggplot(data=filter(dat,team=='GSW'), aes(x=weight,y=height)) + geom_point() + geom_label(aes(label=player))
+
+
+ggplot(dat, aes(x=salary))+geom_density()
+
+ggplot(dat, aes(x=points2))+geom_histogram(binwidth = 50)
+
+ggplot(dat, aes(x=position))+geom_bar()
+  
+ggplot(data=dat, aes(x=experience,y=salary)) + geom_point() + geom_smooth(method = lm)
+
+ggplot(data=dat, aes(x=experience,y=salary)) + geom_point() + geom_smooth(method = loess)
+
+```
+
+

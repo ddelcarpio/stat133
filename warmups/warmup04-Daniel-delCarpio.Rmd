@@ -1,0 +1,85 @@
+---
+title: "warmup04-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "February 27, 2019"
+output: html_document
+---
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+
+github <- 'https://raw.githubusercontent.com/ucb-stat133/stat133-hws/'
+
+repo <- 'master/data/nba2018-players.csv'
+
+datafile <- paste0(github,repo)
+
+datatypes <- c("character","character","factor","integer","integer","integer","integer","character","double","integer","integer","integer","integer","integer")
+
+dat <- read.csv(datafile,sep=",",colClasses = datatypes)
+
+typeof(dat)
+
+
+
+```
+
+##2
+
+There are two main differences in the usage of a data frame vs a tibble: printing, and subsetting
+
+a. Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen. This makes it much easier to work with large data.Tibbles are strict about subsetting. If you try to access a variable that does not exist, you'll get an error:
+
+b. You can use read.csv to select only some columns, but when you pass a colClasses argument you must pass "NULL" as the class of the column so it doesn't read the column and moves to the next item in colClasses that is not "NULL".
+
+c. row.names,check.names,nrows,fill, stringsAsFactors
+
+##3
+```{r}
+
+team_salaries <- summarise(group_by(dat, team),total_salary = sum(salary)/1000000,mean_salary = mean(salary)/1000000, median_salary = median(salary)/1000000)
+
+team_salaries <- team_salaries[order(team_salaries$total_salary, decreasing = TRUE),]
+
+as.data.frame(team_salaries)
+
+team_salaries$team <- factor(team_salaries$team, levels = team_salaries$team[order(team_salaries$total_salary)])
+
+ggplot(data=team_salaries, aes(x=team, y=total_salary)) + geom_bar(stat="identity") + coord_flip() + ggtitle('NBA Teams Ranked by Total Salary') + ylab("Total Salary (in millions)") + xlab("Team") + geom_hline(aes(yintercept = mean(total_salary)), color = 'red') 
+
+
+```
+
+##4
+```{r}
+
+team_points <- summarise(group_by(dat, team),total_points = sum(points), mean_points = mean(points),median_points = median(points))
+
+team_points <- team_points[order(team_points$total_points, decreasing = TRUE),]
+
+as.data.frame(team_points)
+
+team_points$team <- factor(team_points$team, levels = team_points$team[order(team_points$total_points)])
+
+ggplot(data=team_points, aes(x=team, y=total_points)) + geom_bar(stat="identity") + coord_flip() + ggtitle('NBA Teams Ranked by Total Scored Points') + ylab("Total Scored Points") + xlab("Team") + geom_hline(aes(yintercept = mean(total_points)), color = 'red')
+```
+
+##5
+
+```{r}
+
+points_salary <- full_join(team_salaries,team_points)
+
+summary(points_salary)
+
+points_salary$cost_point <- (points_salary$total_salary * 1000000) / points_salary$total_points
+
+summary(points_salary$cost_point)
+
+points_salary$team <- factor(points_salary$team, levels = points_salary$team[order(points_salary$cost_point)])
+
+ggplot(data=points_salary, aes(x=team, y=cost_point)) + geom_bar(stat="identity") + coord_flip() + ggtitle('NBA Teams Ranked by Total Cost Per Point') + ylab("Total Cost per Point") + xlab("Team") + geom_hline(aes(yintercept = mean(cost_point)), color = 'red')
+
+```

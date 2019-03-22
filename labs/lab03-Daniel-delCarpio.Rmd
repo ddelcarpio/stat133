@@ -1,0 +1,98 @@
+---
+title: "lab03-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "February 14, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Abalone Data Set
+
+1.The charachter delimiter is a comma.
+2.The row does not have a name.
+3.It does not look like there are any null or NaN values in the dataset.
+4. The data types are as follows: nomimal, continious, continious, continious, continious,continious,continious,continious and integer.
+
+```{r}
+
+url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data"
+
+abalone <- read.table(url,sep=",")
+
+column_names <- c('Sex','Length','Diameter','Height','Whole','Shucked','Viscera','Shell','Rings')
+
+column_types <- c('character','real','real','real','real','real','real','real','integer')
+
+abalone.data <-read.table(url,sep=",",col.names = column_names,colClasses = column_types)
+
+abalone2 <- read.csv(url,header=FALSE,col.names = column_names,colClasses = column_types)
+
+abalone10 <- head(abalone.data,n=10)
+
+abalone20 <- abalone.data[10:20,]
+
+str(abalone)
+summary(abalone)
+head(abalone)
+tail(abalone)
+dim(abalone)
+names(abalone)
+colnames(abalone)
+nrow(abalone)
+ncol(abalone)
+
+summary(abalone10)
+
+
+abalone.data[1:5,]
+
+
+
+tail(abalone.data,n=5)
+
+height14 <- abalone.data[which(abalone.data[,4]<.14),]
+
+infant <- abalone.data[abalone.data$Sex == 'I',]
+dim(infant)
+
+male_female <- abalone.data[abalone.data$Sex =='F' | abalone.data$Sex == 'M',]
+dim(male_female)
+
+abalone.data[abalone.data$Rings > 25, c('Sex','Rings')]
+
+abalone.data[abalone.data$Rings > 3 & abalone.data$Rings < 6, c('Sex','Rings','Diameter')]
+
+abies <- abalone.data[abalone.data$Sex == 'I',]
+
+abies$product <- abies$Whole * abies$Shucked
+abies2 <- abalone.data[abalone.data$Sex == 'I', c('Length', 'Height', 'Diameter')]
+abies2$log_height <- log10(abies2$Height)
+abies2$log_length <- log10(abies2$Length)
+abies3 <- abies2
+
+abalone[order(abalone$height < .12,decreasing = FALSE)]
+
+
+
+
+
+plot(abalone.data$Height)
+
+
+plot(abalone.data$Height & abalone.data$Length)
+
+plot(abalone.data$Height)
+
+plot(abalone.data$Length)
+
+
+
+
+
+
+
+```
+

@@ -1,0 +1,63 @@
+---
+title: "lab06-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "March 5, 2019"
+output: html_document
+---
+
+```{r, eval= FALSE}
+
+cd Desktop
+
+mkdir demo-repo
+
+git init 
+
+echo "# Demo Repo" >> README.md
+
+git status
+
+git add README.md
+
+git status
+
+git commit -m "first commit"
+
+git remote add origin https://github.com/ddelcarpio/demo-repo.git
+
+git remote -v
+
+git status
+
+git push origin master 
+
+git push -u origin master 
+
+git push origin master 
+
+git status 
+
+git add README.md
+
+git status
+
+git commit -m "second commit"
+
+echo 'Anotha One' >> README.md
+
+git status
+
+git add README.md
+
+git status
+
+git commit -m "second commit"
+
+git remove -v
+
+git push origin master 
+
+git push -f origin master
+```
+
+

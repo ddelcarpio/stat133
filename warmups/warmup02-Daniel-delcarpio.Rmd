@@ -1,0 +1,187 @@
+---
+title: "warmup02-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "February 7, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1)
+```{r}
+
+
+
+
+number = c(30,35,23,9,11,27,34,6,3,0)
+
+player = c('Stephen Curry','Kevin Durant','Draymond Green','Andre Iguodala','Klay Thompson','Zaza Pachulia','Shaun Livingston','Nick Young', 'David West','Patrick McCaw')
+
+position <- factor(c('PG', 'PF', 'PF', 'SF', 'SG', 'C', 'PG', 'SG', 'C', 'SG'))
+
+height <- c('6-3', '6-9', '6-7', '6-6', '6-7', '6-11', '6-7', '6-7', '6-9', '6-7')
+
+weight <- c(190,240,230,215,215,270,192,210,250,185)
+
+birthdate <- c('March 14, 1988','September 29, 1988','March 4, 1990','January 28,1984', 'February 8, 1990','February 10, 1984','September 11, 1985', 'June 1, 1985','August 29, 1980','October 25,1995')
+
+expierence <- c(8,10,5,13,6,14,12,10,14,1)
+
+college <- c('Davidson College','University of Texas at Austin','Michigan State University','University of Arizona','Washington State University','NA','NA','University of Southern California','Xavier University','University of Nevada, Las Vegas')
+
+player[which.max(weight)]
+
+college[height == '6-6']
+
+player[which.max(expierence)]
+
+number[which.min(weight)]
+
+table(position)
+
+length(player[weight > mean(weight)])
+
+mean(expierence[expierence > 7 & expierence < 12])
+
+mean(expierence[position =='SG'])
+
+median(weight[position != 'C'])
+
+quantile(expierence[position == 'SG' | position == 'PF'],0.25)
+
+```
+##2)
+
+```{r}
+gsw <- list(
+  player = player,
+  number = number,
+  position = position,
+  weight = weight,
+  expierence = expierence
+)
+
+gsw$number[which.max(weight)]
+
+gsw$position[which.min(expierence)]
+
+length(gsw$player[expierence < 8 | expierence > 11])
+
+quantile(gsw$expierence[position == 'SG' | position == 'PF'],0.75)
+
+gsw$player[which.max(abs(weight - mean(weight)))]
+
+```
+
+##3)
+```{r}
+
+hp <- list(
+  first = 'Harry',
+  last = 'Potter',
+  courses = c('Potions','Enchantments','Spells'),
+  sport = 'quidditch',
+  age = 18L,
+  gpa = 3.9
+)
+
+typeof(hp)
+
+length(hp)
+
+length(hp[[3]])
+
+typeof(hp[[5]])
+
+typeof(hp[[6]])
+
+typeof(c(hp[[5]],hp[[6]]))
+
+```
+
+##4)
+
+
+a) Since True is equal to 1, 1+1=2
+
+b) This returns false since the "-2" is a string, it does not act like a number, so it cannot be greater or less than 0.
+
+c) Since (10 <= 5) is a Falsey value, and a false value is 0, 0=0, so it returns True
+
+d)These two are not equivilant, since R evaluates the first Falsely value and stops after that.
+
+##5)
+```{r}
+
+lord <-c('v','o','l','d','e','m','o','r','t')
+
+lord[TRUE]
+
+#lord[TRUE] returns all TRUE values in the vector, which is all the strings, so it returns the strings.
+
+lord[length(lord)+1]
+
+#Returns NA since lord has no index after it ends (length + 1), it does not restart in the beginning like other coding languages. 
+
+lord[seq(from = length(lord), to = 1, by = -2)]
+
+lord[lord =='o']
+
+#Returns all the 'o' values in the vector
+
+lord[lord != "e" & lord != "o"]
+
+#Returns all the values that are NOT e and values are NOT O in the vector
+
+
+lord[lord %in% c('a','e','i','o','u')]
+
+#Returns values in lord vector that are also in the vector of vowels
+
+toupper(lord[!lord %in% c('a','e','i','o','u')])
+
+#Returns values in lord vector that are not in the vector of vowels, then changed to all uppercase
+
+paste(lord, collapse='')
+
+#Returns lord vector, but without the single quotes', and pastes it all as one, since the quotes were taken out. 
+
+lord[is.na(lord)]
+
+#Looks into the vector lord for any NA values, but there are none, so turns charachter(0)
+
+sum(!is.na(lord))
+
+#The sum of not NA values, so it returns 9
+
+```
+##6)
+```{r}
+lordmatrix <- matrix(lord,nrow = 3,ncol = 3,byrow= FALSE)
+
+lordmatrix 
+
+
+lordmatrix[1,]
+
+lordmatrix[1:2,2:1]
+
+lordmatrix[1:3,3:1]
+
+lordmatrix[1:3,rep(1:2,2)][1:3,c(1,2,4)]
+
+lordmatrix[3:1,1:3][1:3,c(3,2,1)]
+
+lord_6f <- lordmatrix[3:1,rep(1:3,2)][1:3,c(3,2,5,6)]
+lord_6frev <- apply(lord_6f, 2, rev)
+lord_6fans<- rbind(lord_6f,lord_6frev)
+lord_6fans
+
+lord_6g <- lordmatrix[rep(1:3,2),rep(1:3,2)][c(3,2,1),c(1,2,3,6,5,4)]
+lord_6grev <- apply(lord_6g, 2,rev)
+lord_6gans <- rbind(lord_6g,lord_6grev)
+lord_6gans
+
+```

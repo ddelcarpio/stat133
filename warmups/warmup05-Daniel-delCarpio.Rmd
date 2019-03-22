@@ -1,0 +1,126 @@
+---
+title: "warmup05-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "March 19, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+```
+
+```{r}
+library(ggplot2)
+e <- exp(1)
+#' @title Gaussian Function
+#' @description Performs Gaussian Function
+#' @param x = numeric vector for x (default 0)
+#' @param m = numeric vector for mu (default 0)
+#' @param s = numeric vector for sigma (default 1)
+#' @return scalar of gaussian function
+gaussian <- function(x=0,m=0,s=1){
+  
+  if (s == 0){
+    return("ERROR: s must be greater than zero.")
+  }
+  else{ 
+    return(1/(s*sqrt(2*pi)) * e^((-1/2)*(((x-m)/s)^2)))
+}
+}
+
+gaussian(x=0, m=0, s=1)
+
+gaussian(x=1, m=0, s=2)
+
+gaussian(x=1,m=0,s=0)
+
+gaussian(x=1,m=0,s=-1)
+
+x_values <- seq(from=-4.5, to=4.5,by=.1)
+y_values <- gaussian(x_values, m =0,s=2)
+plot(x_values, y_values, las =1, type = 'l',lwd=2)
+
+y_values1 <- gaussian(x_values, m =0,s=.2)
+y_values2 <- gaussian(x_values, m =0,s=1)
+y_values3 <- gaussian(x_values, m =0,s=5)
+y_values4 <- gaussian(x_values, m =-2,s=.5)
+
+
+plot(x_values, y_values1,type='l',col='blue')
+plot(x_values, y_values2,type='l',col='red')
+plot(x_values, y_values3,type='l',col='yellow')
+plot(x_values, y_values4,type='l',col='green')
+
+
+
+
+
+#' @title Descriptive summary function
+#' @description Returns summary + extras of a vector
+#' @param x = numeric vector for x (default 0)
+#' @param na.rm = whether to remove missing values before computations (default FALSE)
+#' @return Text of summary 
+descriptive <- function(x=0,na.rm = FALSE){
+  
+  return(summary(x))
+}
+
+set.seed(100)
+x<-rnorm(100)
+y <- x
+y[sample(1:100,size =10)] <- NA
+
+descriptive(x)
+descriptive(y)
+descriptive(y, na.rm = TRUE)
+descriptive(letters)
+
+a <- descriptive(x)
+
+class(a)
+length(a)
+names(a)
+
+
+#' @title Minkowski Distance Function
+#' @description  metric in a normed vector space which can be considered as a generalization of both the Euclidean distance and the Manhattan distance.
+#' @param x = numeric vector for one point 
+#' @param y = numeric vector for other point
+#' @param p = either numeric value greater than 1 or a charachter string "max" (default 1)
+#' @return scalar of gaussian function
+
+minkowski <- function(x=0, y=0, p=1) {
+    if(length(x) != length(y)) {
+      return("ERROR: x and y have different lengths.")
+    }
+    
+    if(typeof(p)== "character"){
+      if(p =='max'){
+        return(dist(rbind(x,y),method='minkowski'))
+      }
+        return('ERROR: invalid charcter value for p')
+    }
+    if (p > 1){
+      return("ERROR p cannot be less than 1")
+    }
+    
+    return(dist(rbind(x,y),method='minkowski',p=p))
+}
+point1 <- c(0,0)
+point2 <- c(1,1)
+point3 <- sqrt(c(2,2))
+point4 <- c(0,1)
+point5 <- c(1,1,1)
+
+
+minkowski(point1,point2,p=1)
+minkowski(point1,point3,p=2)
+minkowski(point1,point2,p='max')
+
+
+minkowski(point4,point5,p=1)
+minkowski(point1,point2,p=.5)
+minkowski(point1,point2,p='min')
+
+```
+

@@ -1,0 +1,76 @@
+---
+title: "lab01-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "January 31, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+cell_phone <- 80
+transportation <- 20
+groceries <- 527
+gym <- 10
+rent <- 1500
+other <-83
+other
+total = cell_phone + transportation + groceries + gym + rent + other
+total
+fivemonths <- total * 5
+fivemonths
+year <- total * 10
+year
+expenses = c(cell_phone,transportation,groceries,gym,rent,other)
+expenses
+plot = barplot(expenses)
+
+ordered_plot = barplot(sort(expenses))
+
+a <- 3
+b <- 4
+c <- sqrt(a**3 + b**4)
+c
+
+n <- 5
+k <- 2
+p <- 1/2
+
+factorial(n)/(factorial(k)*factorial(n-k))
+
+choose(n,k)
+
+probfact = factorial(n)/(factorial(k)*factorial(n-k)) *p**k*(1-p)**(n-k)
+probfact
+
+prob = choose(n,k)*p**k*(1-p)**(n-k) 
+prob
+
+trials = 10
+success = 3
+prob_sucess = 1/6
+
+die_prob = choose(trials,success)*prob_sucess**success*(1-prob_sucess)**(trials-success)
+die_prob
+
+?? binomial
+
+dbinom(2,5,1/2)
+
+dbinom(3,3,1/6)
+
+dbinom(2,5,35/100)
+
+dbinom(3,5,35/100)
+ 
+x = 2
+(3*x)**2+4*x+8
+
+x <- -3:3
+(3*x)**2+4*x+8
+
+
+```
+

@@ -1,0 +1,123 @@
+---
+title: "lab02-Daniel-delCarpio"
+author: "Daniel del Carpio"
+date: "February 7, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rdata <- "https://github.com/ucb-stat133/stat133-labs/raw/master/data/nba2018-salary-points.RData"
+
+download.file(url = rdata, destfile = 'nba2018-salary-points.RData')
+
+load('nba2018-salary-points.RData')
+
+setwd("~/Stat 133")
+
+load('nba2018-salary-points.RData')
+
+four <- head(player, n = 4)
+
+four[1]
+
+
+
+
+four [0]
+
+
+four[-1]
+
+
+four[-c(1,2,3)]
+
+
+four[5]
+
+
+four[c(1,2,2,3,3,3)]
+
+
+player[seq(from= 2, to= 476,by=2)]
+
+
+salary[seq(from= 1, to= 477,by=2)]
+
+
+levels(team)[seq(1,30,5)]
+
+
+scored[seq(10,477,10)]
+
+
+rev(levels(team)[seq(2,30,2)])
+
+
+player[team == 'GSW' & position == 'C']
+
+
+player[team == 'GSW' & team == 'LAL']
+
+
+player[(team == 'LAL' & position == 'PG') | (team == 'LAL' & position == 'SG')]
+
+ 
+player[(team == 'GSW' | team == 'LAL') & position == 'SF']
+
+
+player[which.max(salary)]
+
+
+player[which.min(salary)]
+
+
+player[which.max(scored)]
+
+
+salary[which.max(scored)]
+
+
+player[position == "C"][which.max(salary)]
+
+
+team[which.max(scored)]
+
+
+player[which.max(points3)]
+
+library(plotly)
+
+warriors_score <- scored[team == 'GSW']
+warriors_salary <- salary[team == 'GSW']
+
+plot(warriors_score,warriors_salary)
+text(warriors_score, warriors_salary, labels = abbreviate(player))
+
+log_wscore <- log(warriors_score)
+log_wsalary <- log(warriors_salary)
+
+plot(log_wscore,log_wsalary)
+text(warriors_score, warriors_salary, labels = abbreviate(player))
+
+
+position_fac <- factor(position)
+
+table(position_fac)
+
+position_fac[team =='GSW']
+
+position_fac[salary > 15000000]
+
+table(position_fac[salary > 15000000])
+
+table(team[position == 'SG'])
+
+plot(scored,salary, col = position_fac)
+
+plot(scored,salary, col = position_fac, xlab = 'scored', ylab = 'salary',main = 'Score v Salary Scatterplot')
+```
+
