@@ -4,8 +4,6 @@
 library(shiny)
 library(ggplot2)
 
-
-
 ui <- fluidPage(
   
   titlePanel("Mo Money Mo Problems (A Savings Account Timeline)"),
