@@ -2,6 +2,9 @@
 #Daniel del Carpio
 #Stat 133 Workout03
 
+
+library("ggplot2")
+
 #Private Checker Functions
 
 #checks if in input is an appropiate probablity number
@@ -122,16 +125,17 @@ bin_probability <- function(success,trials,prob){
 #'
 
 bin_distribution <- function(trials,prob){
-  s <- 0:trials
-  p <- bin_probability(success,trials,prob)
-  dat <- data.frame(s,p)
+  success <- 0:trials
+  probability <- bin_probability(success,trials,prob)
+  dat <- data.frame(success,probability)
   class(dat) <- c("bindis","data.frame")
   return(dat)
 }
 
 #'@export
-plot.bindis <- function(dat){
-  barplot(dat$p,xlab='Successes',ylab='Proabablity',names.arg =x$s)
+plot.bindis <- function(bindis){
+  ggplot(data=bindis, aes(x=success, y=probability)) +
+    geom_bar(stat="identity") +ggtitle("binomial distribution")
 }
 
 #'@title Binomial Cumulative Distribution
@@ -158,14 +162,137 @@ bin_cumulative <- function(trials,prob){
  
 #' @export
 plot.bincum <- function(x) {
-  plot(x$success, x$cumulative, type = "p",xlab = "successes", ylab = "probability")
+  plot(x$success, x$cumulative, type = "p",
+       xlab = "successes", ylab = "probability")
   lines(x$success, x$cumulative)
 }
 
+#' @title Binomial Variable
+#' @description Creates an object of binomial variable
+#' @param trials Number of trials
+#' @param prob Probability of success
+#' @return An object of binomial variable
+#' @export
+#' @examples
+#' var <- bin_variable(trials = 5, prob = 0.5)
+#' sum_var <- summary(var)
+#' sum_var
+#'
+bin_variable <- function(trials, prob) {
+  check_prob(prob)
+  check_trials(trials)
+  object <- list(trials,prob)
+  class(object) <- "binvar"
+  return(object)
+}
 
+#' @export
+print.binvar <- function(binvar)
+{
+  cat('"Binomial variable"\n\n')
+  cat("Paramaters\n")
+  cat("- number of trials :", binvar[[1]])
+  cat("\n- prob of success:", binvar[[2]])
+  
+  
+}
 
+#' @export
+summary.binvar <- function(binvar)
+{
+  x <- list(binvar[[1]],binvar[[2]],aux_mean(binvar[[1]],binvar[[2]]),
+            aux_variance(binvar[[1]],binvar[[2]]),aux_mode(binvar[[1]],binvar[[2]]),
+            aux_skewness(binvar[[1]],binvar[[2]]),aux_kurtosis(binvar[[1]],binvar[[2]]))
+  class(x) <- "summary.binvar"
+  return(x)
+}
 
+#' @export
+print.summary.binvar <- function(summary.binvar)
+{
+  cat('"Summary Binomial"\n\n')
+  cat("Paramaters\n")
+  cat("- number of trials  :", summary.binvar[[1]])
+  cat("\n- prob of success :", summary.binvar[[2]])
+  cat("\n\nMeasures\n")
+  cat("- mean       :", summary.binvar[[3]])
+  cat("\n- variance :", summary.binvar[[4]])
+  cat("\n- mode     :", summary.binvar[[5]])
+  cat("\n- skewness :", summary.binvar[[6]])
+  cat("\n- kurtosis :", summary.binvar[[7]])
+}
 
+#'@title Binomial Mean
+#'@description Calculates the mean of a binomial variable
+#'@param trials Number of trials
+#'@param prob Probability of success
+#'@return The mean of a binomial variable
+#'@export
+#'@examples
+#' bin_mean(trials = 5, prob = 0.5)
+#'
+bin_mean <- function(trials, prob) {
+  check_trials(trials)
+  check_prob(prob)
+  return(aux_mean(trials, prob))
+}
 
+#' @title Binomial Variance
+#' @description Calculates the variance of a binomial variable
+#' @param trials Number of trials
+#' @param prob Probability of success
+#' @return Calculates the variance of a binomial variable
+#' @export
+#' @examples
+#' bin_variance(trials = 5, prob = 0.5)
+#'
+bin_variance <- function(trials, prob) {
+  check_trials(trials)
+  check_prob(prob)
+  return(aux_variance(trials, prob))
+}
 
+#'@title Binomial Mode
+#'@description Calculates the mode of a binomial variable
+#'@param trials Number of trials
+#'@param prob Probability of success
+#'@return Mode of a binomial variable
+#'@export
+#'@examples
+#' bin_mode(trials = 5, prob = 0.5)
+#'
+bin_mode <- function(trials, prob) {
+  check_trials(trials)
+  check_prob(prob)
+  return(aux_mode(trials, prob))
+}
 
+#'@title Binomial Skewness
+#'@description Calculates the skewness of a binomial variable
+#'@param trials Number of trials
+#'@param prob Probability of success
+#'@return Skewness of a binomial variable
+#'@export
+#'@examples
+#'bin_skewness(trials = 5, prob = 0.5)
+#'
+bin_skewness <- function(trials, prob) {
+  check_trials(trials)
+  check_prob(prob)
+  return(aux_skewness(trials, prob))
+}
+
+#'@title Binomial Kurtosis
+#'@description Calculates the kurtosis of a binomial variable
+#'@param trials Number of trials
+#'@param prob Probability of success
+#'@return Kurtosis of a binomial variable
+#'@export
+#'@examples
+#'bin_kurtosis(trials = 5, prob = 0.5)
+#'
+bin_kurtosis <- function(trials, prob) {
+  check_trials(trials)
+  check_prob(prob)
+  return(aux_kurtosis(trials, prob))
+}
