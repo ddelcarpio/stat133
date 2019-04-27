@@ -1,5 +1,5 @@
-#Private Checker Functions
 #Daniel del Carpio
+#Private Checker Functions
 #Stat 133 Workout03
 
 
@@ -11,7 +11,7 @@ check_prob <- function(prob){
   stop("\ninvalid prob value")
 }
 
-#checks if input value trials is positive 
+#checks if input value trials is positive
 check_trials <- function(trials){
   if (trials > 0){
     return(TRUE)
