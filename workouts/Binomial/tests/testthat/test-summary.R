@@ -2,7 +2,7 @@
 #Testhat for Summaries
 #stat133 Workout03
 
-context("Tests for Summary Functions work correctly")
+context("Tests for Summary Functions")
 
 
 #Aux_mean
@@ -23,7 +23,7 @@ test_that("aux_variance computes correctly",{
 })
 
 test_that("aux_variance returns error correctly",{
-  expect_error(aux_variance(10,4))
+  expect_error(aux_variance(10,4,2))
 })
 
 #Aux_mode
@@ -43,7 +43,7 @@ test_that("aux_sknewness computes correctly",{
 })
 
 test_that("aux_skewness returns error correctly",{
-  expect_error(aux_skewness(10,4))
+  expect_error(aux_skewness(10,'the'))
 })
 
 #Aux_Kurtosis
@@ -53,7 +53,7 @@ test_that("aux_kurtosis computes correctly",{
 })
 
 test_that("aux_kurtosis returns error correctly",{
-  expect_error(aux_kurtosis(10,4))
+  expect_error(aux_kurtosis(10,4,1))
 })
 
 

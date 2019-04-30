@@ -31,12 +31,8 @@ test_that("test check_trials returns true with valid inputs",{
 })
 
 #check_success
-test_that("test check_success returns error with invalid inputs"){
+test_that("test check_success returns error with invalid inputs",{
   expect_error(check_success(c(1, -2, 3), 5))
-  expect_error(check_success(c(1, 2, 3), 3))
-}
-
-test_that("test check_success returns true with valid inputs"){
-  expect_true(check_success(c(1,2,3), 4))
-  expect_true(length(check_success(c(1,2,3), 4))==1)
-}
+  expect_error(check_success(c(1, 2, 3), -3))
+  expect_error(check_successes(2.5))
+})

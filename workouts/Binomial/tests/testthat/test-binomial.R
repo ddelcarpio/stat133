@@ -40,9 +40,9 @@ test_that("bin_distribution creates correct dataframe",{
 
 #bin_cumulative
 test_that("bin_cumulative creates correct dataframe",{
-  dis2 <- bin_distribution(5, 0.5)
+  dis2 <- bin_cumulative(5, 0.5)
   expect_equal(nrow(dis2), 6)
-  expect_equal(length(dis2), 2)
+  expect_equal(length(dis2), 3)
   expect_equal(dis2$success, 0:5)
   expect_equal(dis2$probability,
                c(0.03125, 0.15625, 0.31250, 0.31250, 0.15625, 0.03125))
