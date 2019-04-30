@@ -4,6 +4,7 @@
 
 context("Tests for checker functions")
 
+
 #check_prob
 test_that("test check_prob returns true with valid inputs",{
   expect_true(check_prob(1) >= 0 & check_prob(1) <= 1)
