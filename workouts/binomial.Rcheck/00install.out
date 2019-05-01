@@ -1,0 +1,8 @@
+* installing *source* package 'binomial' ...
+** R
+** byte-compile and prepare package for lazy loading
+Error in library(ggplot2) : there is no package called 'ggplot2'
+Error : unable to load R code in package 'binomial'
+ERROR: lazy loading failed for package 'binomial'
+* removing 'C:/Users/danie/OneDrive/Documents/GitHub/stat133/workouts/binomial.Rcheck/binomial'
+In R CMD INSTALL
